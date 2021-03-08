@@ -142,9 +142,10 @@ public class ExcelConnection {
                ps.setString(3, data[2]);
                ps.setString(4, data[3]);
                ps.executeUpdate();
-               JOptionPane.showMessageDialog(null, "Base de datos llenada con exito!");
+               
             }
         } while (a);
+        JOptionPane.showMessageDialog(null, "Base de datos llenada con exito!");
         }
         
         
