@@ -129,7 +129,7 @@ public class ExcelConnection {
             String  line ;
         Connection cn = bdConnection();
         PreparedStatement ps = cn.prepareStatement("insert into stories values (0,?,?,?,?)");
-        File file = new File("src\\data\\stories.txt");
+        File file = new File("data\\stories.txt");
         FileReader fr = new FileReader(file);
         BufferedReader br = new BufferedReader(fr);
         boolean a = contraseña.equals("edm190202");

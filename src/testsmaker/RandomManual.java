@@ -135,9 +135,9 @@ public class RandomManual extends javax.swing.JFrame {
         if (age == 0) {
             r = null;
         } else if (age < 14) {
-            r = "niños";
+            r = "ninios";
         } else if (age < 18) {
-            r = "Jóvenes";
+            r = "Jovenes";
         } else {
             r = "Adultos";
         }
