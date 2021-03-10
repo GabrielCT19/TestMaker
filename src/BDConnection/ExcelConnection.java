@@ -54,7 +54,7 @@ public class ExcelConnection {
         String[] stories = {};
         String[] savvy = {};
         String[] pm = {};
-        if (rowData[0].isEmpty()) {
+        if (!rowData[0].isEmpty()) {
             stories = new String[rowData.length];
             savvy = new String[rowData.length];
             pm = new String[rowData.length];
