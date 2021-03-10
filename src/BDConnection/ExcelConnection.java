@@ -54,17 +54,17 @@ public class ExcelConnection {
         String[] stories = {};
         String[] savvy = {};
         String[] pm = {};
-        if(!rowData[0].isEmpty()){
-           stories = new String[rowData.length];
-           savvy = new String[rowData.length];
-           pm = new String[rowData.length];
-        for (int i = 0; i < rowData.length; i++) {
-            String[] rowTest = rowData[i].split("-");
-            stories[i] = rowTest[0];
-            savvy[i] = Integer.parseInt(rowTest[1]) + "%";
-            pm[i] = rowTest[2];
-        }
-        stories = getStorieTittles(stories); 
+        if (rowData[0].isEmpty()) {
+            stories = new String[rowData.length];
+            savvy = new String[rowData.length];
+            pm = new String[rowData.length];
+            for (int i = 0; i < rowData.length; i++) {
+                String[] rowTest = rowData[i].split("-");
+                stories[i] = rowTest[0];
+                savvy[i] = Integer.parseInt(rowTest[1]) + "%";
+                pm[i] = rowTest[2];
+            }
+            stories = getStorieTittles(stories);
         }
         String[][] table = new String[3][];
         table[0] = stories;
@@ -128,30 +128,28 @@ public class ExcelConnection {
 
     public static void upStories() throws SQLException, FileNotFoundException, IOException {
         String contraseña = JOptionPane.showInputDialog("Contraseña");
-        if(contraseña != null){
-            String  line ;
-        Connection cn = bdConnection();
-        PreparedStatement ps = cn.prepareStatement("insert into stories values (0,?,?,?,?)");
-        File file = new File("data\\stories.txt");
-        FileReader fr = new FileReader(file);
-        BufferedReader br = new BufferedReader(fr);
-        boolean a = contraseña.equals("edm190202");
-        do {            
-            line = br.readLine();
-            if(a = line != null && !line.isBlank()){
-               String[] data = line.split("-");
-               ps.setString(1, data[0]);
-               ps.setString(2, data[1]);
-               ps.setString(3, data[2]);
-               ps.setString(4, data[3]);
-               ps.executeUpdate();
-               
-            }
-        } while (a);
-        JOptionPane.showMessageDialog(null, "Base de datos llenada con exito!");
+        if (contraseña != null) {
+            String line;
+            Connection cn = bdConnection();
+            PreparedStatement ps = cn.prepareStatement("insert into stories values (0,?,?,?,?)");
+            File file = new File("data\\stories.txt");
+            FileReader fr = new FileReader(file);
+            BufferedReader br = new BufferedReader(fr);
+            boolean a = contraseña.equals("edm190202");
+            do {
+                line = br.readLine();
+                if (a = line != null && !line.isBlank()) {
+                    String[] data = line.split("-");
+                    ps.setString(1, data[0]);
+                    ps.setString(2, data[1]);
+                    ps.setString(3, data[2]);
+                    ps.setString(4, data[3]);
+                    ps.executeUpdate();
+
+                }
+            } while (a);
+            JOptionPane.showMessageDialog(null, "Base de datos llenada con exito!");
         }
-        
-        
 
     }
 
