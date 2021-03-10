@@ -13,20 +13,21 @@ import javax.swing.JOptionPane;
  * @author Gabriel Cabredo <202000210 at @est.umms.edu>
  */
 public class Main extends javax.swing.JFrame {
-    
+
     private ArrayList<String> users;
+
     public Main() {
         initComponents();
         setLocationRelativeTo(null);
         setResizable(false);
         try {
             users = ExcelConnection.userList();
-            
-            for(String s : users){
+
+            for (String s : users) {
                 jComboBox1.addItem(s);
             }
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null,"Error contactate con el desarrollador"+"\n"+" Mensaje de error: "+e.getMessage());
+            JOptionPane.showMessageDialog(null, "Error contactate con el desarrollador" + "\n" + " Mensaje de error: " + e.getMessage());
         }
     }
 
@@ -103,26 +104,26 @@ public class Main extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         int index = jComboBox1.getSelectedIndex();
-        if(index > 0){
+        if (index > 0) {
             new UserWindow(index).setVisible(true);
             dispose();
-        }else{
-            JOptionPane.showMessageDialog(null,"Por favor seleccione algun alumno");
+        } else {
+            JOptionPane.showMessageDialog(null, "Por favor seleccione algun alumno");
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         dispose();
         new AddUser().setVisible(true);
-        
+
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
         try {
             ExcelConnection.upStories();
         } catch (SQLException | IOException e) {
-            JOptionPane.showMessageDialog(null,"Error contactate con el desarrollador"+"\n"+" Mensaje de error: "+e.getMessage());
-        } 
+            JOptionPane.showMessageDialog(null, "Error contactate con el desarrollador" + "\n" + " Mensaje de error: " + e.getMessage());
+        }
     }//GEN-LAST:event_jLabel1MouseClicked
 
     public static void main(String args[]) {
