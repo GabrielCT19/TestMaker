@@ -38,7 +38,7 @@ public class ExcelConnection {
     }
 
     private static String getRowTestofUser(int idUser) throws SQLException {
-        String rowData = "           ";
+        String rowData = "";
         Connection cn = bdConnection();
         PreparedStatement pst = cn.prepareStatement("SELECT `Tests` FROM `users` where `ID` = " + idUser);
         ResultSet rs = pst.executeQuery();
@@ -51,18 +51,21 @@ public class ExcelConnection {
 
     public static String[][] getTestsofUser(int idUser) throws SQLException {
         String[] rowData = getRowTestofUser(idUser).split("/");
-
-        String[] stories = new String[rowData.length];
-        String[] savvy = new String[rowData.length];
-        String[] pm = new String[rowData.length];
-
+        String[] stories = {};
+        String[] savvy = {};
+        String[] pm = {};
+        if(!rowData[0].isEmpty()){
+           stories = new String[rowData.length];
+           savvy = new String[rowData.length];
+           pm = new String[rowData.length];
         for (int i = 0; i < rowData.length; i++) {
             String[] rowTest = rowData[i].split("-");
             stories[i] = rowTest[0];
             savvy[i] = Integer.parseInt(rowTest[1]) + "%";
             pm[i] = rowTest[2];
         }
-        stories = getStorieTittles(stories);
+        stories = getStorieTittles(stories); 
+        }
         String[][] table = new String[3][];
         table[0] = stories;
         table[1] = pm;
